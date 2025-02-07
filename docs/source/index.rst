@@ -8,150 +8,141 @@
 PyTorch documentation
 ===================================
 
-PyTorch is an optimized tensor library for deep learning using GPUs and CPUs.
+**PyTorch** is an open-source machine learning library that excels in deep
+learning on GPUs, offering a dynamic computational graph for flexible
+model building and real-time graph modification. PyTorch provides
+efficient tensor computation with strong GPU acceleration, enabling
+the handling of large-scale data.
 
-Features described in this documentation are classified by release status:
+.. mermaid::
 
-  *Stable:*  These features will be maintained long-term and there should generally
-  be no major performance limitations or gaps in documentation.
-  We also expect to maintain backwards compatibility (although
-  breaking changes can happen and notice will be given one release ahead
-  of time).
+   graph TD;
+    A[PyTorch] --> B[Tensors]
+    A --> C[Autograd]
+    A --> D[Neural Networks]
+    A --> E[Optimizers]
+    B --> F[Operations]
+    C --> G[Backward Propagation]
+    D --> H[Modules]
+    D --> I[Layers]
+    E --> J[SGD]
+    E --> K[Adam]
+    F --> L[Matrix Multiplication]
+    F --> M[Element-wise Operations]
+    H --> N[Sequential]
+    H --> O[Custom Modules]
 
-  *Beta:*  These features are tagged as Beta because the API may change based on
-  user feedback, because the performance needs to improve, or because
-  coverage across operators is not yet complete. For Beta features, we are
-  committing to seeing the feature through to the Stable classification.
-  We are not, however, committing to backwards compatibility.
+Beginner's Essentials
+~~~~~~~~~~~~~~~~~~~~~
 
-  *Prototype:*  These features are typically not available as part of
-  binary distributions like PyPI or Conda, except sometimes behind run-time
-  flags, and are at an early stage for feedback and testing.
+.. grid:: 3
+   :gutter: 3 3 5 3
+   
+   .. grid-item-card:: Get Started
+      :link: https://pytorch.org/get-started/locally/
 
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :caption: Community
+      Visit the **PyTorch Get Started** page to find the appropriate
+      installation command for your operating system and environment.
 
-   community/*
 
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :caption: Developer Notes
+   .. grid-item-card:: Learn the Basics
+      :link: https://pytorch.org/tutorials/beginner/basics/intro.html
 
-   notes/*
+      Familiarize yourself with PyTorch's core concepts by
+      exploring the Learn the **Basics tutorial series**, which
+      cover tensors, autograd, and building neural networks.
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Language Bindings
+   .. grid-item-card:: Build Neural Networks
+      :link: https://pytorch.org/tutorials/beginner/basics/intro.html
 
-   cpp_index
-   Javadoc <https://pytorch.org/javadoc/>
-   torch::deploy <deploy>
+      Dive into the **Neural Networks** tutorial to learn how to
+      define and train models using PyTorch's torch.nn module.
+
+   .. grid-item-card:: Python API
+      :link: torch_api
+      :link-type: ref
+
+      Explore the **PyTorch Python API Documentation** to get detailed
+      information on all available classes, functions, and modules.
+
+Building Proficiency
+~~~~~~~~~~~~~~~~~~~~
+
+.. grid:: 3
+   :gutter: 3 3 5 3
+
+   .. grid-item-card:: Distributed Training
+      :link: https://pytorch.org/docs/stable/distributed.html
+      :link-type: url
+
+      Learn how to scale your models across multiple GPUs and machines
+      using PyTorch's distributed training capabilities.
+
+
+   .. grid-item-card:: CUDA and GPU Acceleration
+      :link: https://pytorch.org/docs/stable/notes/cuda.html
+      :link-type: url
+
+      Explore how to leverage CUDA for GPU acceleration to
+      significantly speed up model training and inference.
+
+   .. grid-item-card:: Performance Optimization
+      :link: Discover how to use torch.compile to optimize model
+      performance by compiling PyTorch models for faster execution.
+      :link-type: url
+
+      Discover how to use torch.compile to optimize model
+      performance by compiling PyTorch models for faster execution.
+
+Deep Dive
+~~~~~~~~~
+
+.. grid:: 3
+   :gutter: 3 3 5 3
+
+   .. grid-item-card:: Features for Large-scale deployments
+      :link: https://pytorch.org/docs/stable/notes/large_scale_deployments.html
+      :link-type: url
+
+      Learn about how to use PyTorch at scale within a larger system.
+
+Contributing to PyTorch
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Ready to contribute? Learn about the process of contributing to the
+PyTorch codebase on our `Community page <https://pytorch.org/docs/stable/community/design.html>`__
+and in the `Ultimate Guide to PyTorch Contributions <https://github.com/pytorch/pytorch/wiki/The-Ultimate-Guide-to-PyTorch-Contributions>`__.
 
 .. toctree::
    :glob:
    :maxdepth: 1
    :caption: Python API
+   :hidden:
 
-   torch
-   nn
-   nn.functional
-   tensors
-   tensor_attributes
-   tensor_view
-   torch.amp <amp>
-   torch.autograd <autograd>
-   torch.library <library>
-   accelerator
-   cpu
-   cuda
-   torch.cuda.memory <torch_cuda_memory>
-   mps
-   xpu
-   mtia
-   mtia.memory
-   meta
-   torch.backends <backends>
-   torch.export <export>
-   torch.distributed <distributed>
-   torch.distributed.tensor <distributed.tensor>
-   torch.distributed.algorithms.join <distributed.algorithms.join>
-   torch.distributed.elastic <distributed.elastic>
-   torch.distributed.fsdp <fsdp>
-   torch.distributed.fsdp.fully_shard <distributed.fsdp.fully_shard>
-   torch.distributed.tensor.parallel <distributed.tensor.parallel>
-   torch.distributed.optim <distributed.optim>
-   torch.distributed.pipelining <distributed.pipelining>
-   torch.distributed.checkpoint <distributed.checkpoint>
-   torch.distributions <distributions>
-   torch.compiler <torch.compiler>
-   torch.fft <fft>
-   torch.func <func>
-   futures
-   fx
-   fx.experimental
-   torch.hub <hub>
-   torch.jit <jit>
-   torch.linalg <linalg>
-   torch.monitor <monitor>
-   torch.signal <signal>
-   torch.special <special>
-   torch.overrides
-   torch.package <package>
-   profiler
-   nn.init
-   nn.attention
-   onnx
-   optim
-   complex_numbers
-   ddp_comm_hooks
-   quantization
-   rpc
-   torch.random <random>
-   masked
-   torch.nested <nested>
-   size
-   sparse
-   storage
-   torch.testing <testing>
-   torch.utils <utils>
-   torch.utils.benchmark <benchmark_utils>
-   torch.utils.bottleneck <bottleneck>
-   torch.utils.checkpoint <checkpoint>
-   torch.utils.cpp_extension <cpp_extension>
-   torch.utils.data <data>
-   torch.utils.deterministic <deterministic>
-   torch.utils.jit <jit_utils>
-   torch.utils.dlpack <dlpack>
-   torch.utils.mobile_optimizer <mobile_optimizer>
-   torch.utils.model_zoo <model_zoo>
-   torch.utils.tensorboard <tensorboard>
-   torch.utils.module_tracker <module_tracker>
-   type_info
-   named_tensor
-   name_inference
-   torch.__config__ <config_mod>
-   torch.__future__ <future_mod>
-   logging
-   torch_environment_variables
+   python-api/index
+    
 
 .. toctree::
+   :glob:
    :maxdepth: 1
-   :caption: Libraries
+   :caption: Developer Notes
+   :hidden:
 
-   torchaudio <https://pytorch.org/audio/stable>
-   TorchData <https://pytorch.org/data>
-   TorchRec <https://pytorch.org/torchrec>
-   TorchServe <https://pytorch.org/serve>
-   torchtext <https://pytorch.org/text/stable>
-   torchvision <https://pytorch.org/vision/stable>
-   PyTorch on XLA Devices <https://pytorch.org/xla/>
-   torchao <https://pytorch.org/ao>
+   notes/index
+ 
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :caption: Community
+   :hidden:
 
-Indices and tables
-==================
+   community/index
+    
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :caption: Language Bindings
+   :hidden:
 
-* :ref:`genindex`
-* :ref:`modindex`
+   lang-bindings/index
+

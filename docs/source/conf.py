@@ -28,6 +28,19 @@ from os import path
 # sys.path.insert(0, os.path.abspath('../..'))
 import torch
 
+import os
+import jinja2
+# Load the Jinja environment
+jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader('_templates'))
+# Load and render the theme variables
+theme_variables_template = jinja_env.get_template('theme_variables.jinja')
+theme_variables_str = theme_variables_template.render()
+# Define a dictionary to hold the evaluated variables
+namespace = {}
+# Use exec to evaluate the string as a Python dictionary
+exec(theme_variables_str, {}, namespace)
+# Extract the external_urls from the namespace
+external_urls = namespace.get('external_urls', {})
 
 try:
     import torchvision  # noqa: F401
@@ -38,7 +51,7 @@ except ImportError:
 
 RELEASE = os.environ.get("RELEASE", False)
 
-import pytorch_sphinx_theme
+#import pytorch_sphinx_theme
 
 
 # -- General configuration ------------------------------------------------
@@ -62,10 +75,15 @@ extensions = [
     "sphinxcontrib.katex",
     "sphinx.ext.autosectionlabel",
     "sphinx_copybutton",
-    "sphinx_panels",
     "myst_parser",
     "sphinx.ext.linkcode",
+    "sphinxcontrib.mermaid",
+    "sphinx_design"
 ]
+
+
+
+
 
 # build the templated autosummary files
 autosummary_generate = True
@@ -82,6 +100,85 @@ autosectionlabel_prefix_document = True
 # katex options
 #
 #
+
+##########Pydata Theme Options#########
+
+html_theme_options = {
+    "external_links": [
+        {
+            "url": "https://pytorch.org/audio/stable/",
+            "name": "torchaudio",
+        },
+        {
+            "url": "https://pytorch.org/ao",
+            "name": "torchao",
+        },
+        {
+            "url": "https://pytorch.org/executorch",
+            "name": "ExecuTorch",
+        },
+        {
+            "url": "https://pytorch.org/torchrec",
+            "name": "torchrec",
+        },
+        {
+            "url": "https://pytorch.org/serve/",
+            "name": "torchserve",
+        },
+        {
+            "url": "https://pytorch.org/data",
+            "name": "torchdata",
+        },
+        {
+            "url": "https://pytorch.org/data",
+            "name": "torchvision",
+        },
+        {
+            "url": "https://pytorch.org/xla",
+            "name": "PyTorch on XLA Devices",
+        },
+    ],
+    "header_links_before_dropdown": 4,
+    "icon_links": [
+        {
+            "name": "X",
+            "url": "https://x.com/PyTorch",
+            "icon": "fa-brands fa-x-twitter",
+        },
+        {
+            "name": "GitHub",
+            "url": "https://github.com/pytorch/pytorch",
+            "icon": "fa-brands fa-github",
+        },
+        {
+            "name": "PyPI",
+            "url": "https://pypi.org/project/torch",
+            "icon": "fa-custom fa-pypi",
+        },
+    ],
+    "use_edit_page_button": True,
+    "navbar_align": "left",
+    "navbar_start": ["navbar-nav"],
+    "navbar_center": [],
+    "navbar_end": [ "navbar-icon-links"],
+    "navbar_persistent": ["search-field.html"],
+    "secondary_sidebar_items": ["page-toc"],
+    "switcher": {
+        "json_url": "https://pydata-sphinx-theme.readthedocs.io/en/latest/_static/switcher.json",
+    },
+}
+
+html_context = {
+    'theme_variables': {
+        'external_urls': external_urls
+    },
+    "github_url": "https://github.com",
+    "github_user": "pytorch",
+    "github_repo": "pytorch",
+    "github_version": "main",
+    "doc_path": "docs/source",
+    'external_links': html_theme_options.get('external_links', [])
+}
 
 katex_prerender = True
 
@@ -3493,8 +3590,8 @@ autodoc_docstring_signature = True
 #
 #
 
-html_theme = "pytorch_sphinx_theme"
-html_theme_path = [pytorch_sphinx_theme.get_html_theme_path()]
+html_theme = "pydata_sphinx_theme"
+#html_theme_path = [pytorch_sphinx_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -3505,11 +3602,10 @@ html_theme_options = {
     "canonical_url": "https://pytorch.org/docs/stable/",
     "collapse_navigation": False,
     "display_version": True,
-    "logo_only": True,
     "analytics_id": "GTM-T8XT4PS",
 }
 
-html_logo = "_static/img/pytorch-logo-dark-unstable.png"
+html_logo = "_static/img/logo-icon.svg"
 if RELEASE:
     html_logo = "_static/img/pytorch-logo-dark.svg"
 
@@ -3519,7 +3615,7 @@ if RELEASE:
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 
-html_css_files = ["css/jit.css", "css/custom.css"]
+html_css_files = ["css/jit.css", "css/custom.css", "css/custom2.css"]
 
 from sphinx.ext.coverage import CoverageBuilder
 
@@ -3654,9 +3750,6 @@ def setup(app):
 
     # In Sphinx 1.8 it was renamed to `add_css_file`, 1.7 and prior it is
     # `add_stylesheet` (deprecated in 1.8).
-    add_css = getattr(app, "add_css_file", app.add_stylesheet)
-    for css_file in html_css_files:
-        add_css(css_file)
 
     app.connect("build-finished", coverage_post_process)
     app.connect("autodoc-process-docstring", process_docstring)
