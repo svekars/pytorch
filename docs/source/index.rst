@@ -16,7 +16,7 @@ the handling of large-scale data.
 
 .. mermaid::
 
-   graph TD;
+    graph TD;
     A[PyTorch] --> B[Tensors]
     A --> C[Autograd]
     A --> D[Neural Networks]
