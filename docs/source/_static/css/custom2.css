@@ -479,14 +479,14 @@ html[data-theme="dark"] {
 /* End of theme colors */
 
 .bd-header {
-  top: 90px !important;
-  position: sticky !important;
+  top: 90px; !important;
+  position: sticky; !important;
   z-index: 999;
 }
 
 @media (max-width: 1200px) {
   .bd-header {
-    top: 70px !important;
+    top: 70px; !important;
   }
 
 
@@ -496,8 +496,4 @@ html[data-theme="dark"] {
 
 .bd-sidebar-secondary {
   top: 150px !important;
-}
-
-.navbar-brand img {
-  height: 50%;
 }
