@@ -6,12 +6,28 @@
 {% endfor %}
 </div>
 <div class="sidebar-secondary-item">
- <h6>PyTorch Libraries</h6>
+  <div class="sidebar-heading">PyTorch Community</div>
+  <ul>
+  {% for link in community_links %}
+   <li><a class="nav-link nav-external" href="{{ link.url }}">{{ link.name }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
+<div class="sidebar-secondary-item">
+ <div class="sidebar-heading">Language Bindings</div>
  <ul>
- {% for link in external_links %}
+ {% for link in language_bindings_links %}
   <li><a class="nav-link nav-external" href="{{ link.url }}">{{ link.name }}</a></li>
  {% endfor %}
  </ul>
+</div>
+<div class="sidebar-secondary-item">
+  <div class="sidebar-heading">PyTorch Libraries</div>
+  <ul>
+  {% for link in library_links %}
+   <li><a class="nav-link nav-external" href="{{ link.url }}">{{ link.name }}</a></li>
+  {% endfor %}
+  </ul>
 </div>
 </div>
 {% endif %}

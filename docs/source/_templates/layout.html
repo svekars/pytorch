@@ -1,7 +1,25 @@
 {% extends "!layout.html" %}
 
+{% block extrahead %}
+{{ super() }}
+<script type="text/javascript" src="{{ pathto('_static/js/send-feedback.js', 1) }}"></script>
+<script type="text/javascript" src="{{ pathto('_static/js/star-rating.js', 1) }}"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEST12345"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TEST12345');
+    </script>
+{% endblock%}
+
+
 {%- block content %}
-<div class="container-fluid header-holder tutorials-header" id="header-holder">
+<body data-feedback-url="{{ feedback_url }}">
+  <div class="container-fluid header-holder tutorials-header" id="header-holder">
   <div class="container">
     <div class="header-container">
       <a class="header-logo" href="{{ theme_variables.external_urls['home'] }}" aria-label="PyTorch"></a>
@@ -87,7 +105,7 @@
                   <span class="dropdown-title">ExecuTorch Docs</span>
                 </a>
               </div>
-            </div>  
+            </div>
           </li>
 
           <li class="main-menu-item">
@@ -111,7 +129,7 @@
           <li>
             <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
               <a class="with-down-arrow">
-                Blogs & News 
+                Blogs & News
               </a>
               <div class="resources-dropdown-menu">
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['blog'] }}">
@@ -182,7 +200,7 @@
              </a>
            </div>
           </li>
-          <!--- TODO: This block adds the search icon to the nav bar. We will enable it later. 
+          <!--- TODO: This block adds the search icon to the nav bar. We will enable it later.
           <li>
             <div class="main-menu-item">
              <a href="{{ theme_variables.external_urls['github'] }}" class="search-icon">
@@ -199,3 +217,4 @@
 </div>
 {{ super() }}
 {% endblock %}
+</body>

@@ -53,7 +53,6 @@ RELEASE = os.environ.get("RELEASE", False)
 
 #import pytorch_sphinx_theme
 
-
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -81,6 +80,7 @@ extensions = [
     "sphinx_design"
 ]
 
+myst_enable_extensions = ["colon_fence"]
 
 
 
@@ -137,6 +137,34 @@ html_theme_options = {
             "name": "PyTorch on XLA Devices",
         },
     ],
+    "language_bindings_links": [
+        {
+            "url": "https://pytorch.org/docs/stable/cpp_index.html",
+            "name": "C++",
+        },
+        {
+            "url": "https://pytorch.org/javadoc/",
+            "name": "Javadoc",
+        },
+        {
+            "url": "https://github.com/pytorch/multipy",
+            "name": "torch.multiply",
+        },
+    ],
+    "community_links": [
+        {
+            "url": "community/index.html",
+            "name": "PyTorch Governance",
+        },
+        {
+            "url": "https://pytorch.org/docs/stable/community/design.html",
+            "name": "PyTorch Design Philosophy",
+        },
+        {
+            "url": "https://github.com/pytorch/pytorch/wiki/The-Ultimate-Guide-to-PyTorch-Contributions",
+            "name": "The Ultimate Guide to PyTorch Contributions",
+        },
+    ],
     "header_links_before_dropdown": 4,
     "icon_links": [
         {
@@ -155,15 +183,24 @@ html_theme_options = {
             "icon": "fa-custom fa-pypi",
         },
     ],
+    "external_links": [
+        {
+            "name": "Tutorials",
+            "url": "https://pytorch.org/tutorials/",
+        },
+    ],
     "use_edit_page_button": True,
     "navbar_align": "left",
-    "navbar_start": ["version-switcher","navbar-logo"],
+    "navbar_start": ["navbar-logo"],
     "navbar_center": ["navbar-nav"],
-    "navbar_end": ["theme-switcher", "navbar-icon-links"],
+    "navbar_end": ["version-switcher","theme-switcher", "navbar-icon-links"],
+    "article_header_start": ["breadcrumbs"],
+    "article_header_end": ["rate_page.html"],
     "secondary_sidebar_items": ["page-toc", "edit-this-page", "sourcelink"],
     "logo": {
         "text": "Home",
     },
+    "article_footer_items": ["footer-rating.html"],
     "pytorch_project": "docs",
     "canonical_url": "https://pytorch.org/docs/stable/",
     "collapse_navigation": False,
@@ -177,10 +214,14 @@ html_context = {
     "github_url": "https://github.com",
     "github_user": "pytorch",
     "github_repo": "pytorch",
+    "feedback_url": "https://github.com/pytorch/pytorch",
     "github_version": "main",
     "doc_path": "docs/source",
-    'external_links': html_theme_options.get('library_links', []),
+    'library_links': html_theme_options.get('library_links', []),
+    "community_links": html_theme_options.get('community_links', []),
+    "language_bindings_links": html_theme_options.get('language_bindings_links', []),
 }
+
 
 katex_prerender = True
 
@@ -3610,7 +3651,7 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 
 html_css_files = ["css/jit.css", "css/custom.css", "css/custom2.css"]
-
+html_js_files = ["js/star-rating.js", "js/send-feedback.js"]
 from sphinx.ext.coverage import CoverageBuilder
 
 
