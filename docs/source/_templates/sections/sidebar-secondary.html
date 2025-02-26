@@ -7,25 +7,25 @@
 </div>
 <div class="sidebar-secondary-item">
   <div class="sidebar-heading">PyTorch Community</div>
-  <ul>
+  <ul style="list-style-type: none; padding: 0;">
   {% for link in community_links %}
-   <li><a class="nav-link nav-external" href="{{ link.url }}">{{ link.name }}</a></li>
+   <li><a class="nav-link nav-external" href="{{ link.url }}" style="color: var(--pst-color-text-muted)">{{ link.name }}</a></li>
   {% endfor %}
   </ul>
 </div>
 <div class="sidebar-secondary-item">
  <div class="sidebar-heading">Language Bindings</div>
- <ul>
+ <ul style="list-style-type: none; padding: 0;">
  {% for link in language_bindings_links %}
-  <li><a class="nav-link nav-external" href="{{ link.url }}">{{ link.name }}</a></li>
+  <li><a class="nav-link nav-external" href="{{ link.url }}" style="color: var(--pst-color-text-muted)">{{ link.name }}</a></li>
  {% endfor %}
  </ul>
 </div>
 <div class="sidebar-secondary-item">
   <div class="sidebar-heading">PyTorch Libraries</div>
-  <ul>
+  <ul style="list-style-type: none; padding: 0;">
   {% for link in library_links %}
-   <li><a class="nav-link nav-external" href="{{ link.url }}">{{ link.name }}</a></li>
+   <li><a class="nav-link nav-external" href="{{ link.url }}" style="color: var(--pst-color-text-muted)">{{ link.name }}</a></li>
   {% endfor %}
   </ul>
 </div>
